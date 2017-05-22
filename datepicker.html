@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+	<meta charset=utf-8>
+	<head>
+		<style>
+			p, span{
+				font-family:Microsoft Yahei;
+				font-weight:lighter;
+				text-align:center;
+			}
+			#yearPanel, #monthPanel, #datePanel{
+				position:absolute;
+				width:210px;
+				height:210px;
+				background:rgb(240, 240, 240);
+				transition:all 0.3s ease-in;
+				z-index:-1;
+				pointer-events: none;
+			}
+			.prev, .next{
+				pointer-events:auto;
+				border:none;
+				background:#009A61;
+				color:white;
+				transition:all 0.2s ease-in;
+			}
+			.prev:hover, .next:hover{
+				background:rgba(255, 255, 255, 0.3);
+				color:rgb(50, 50, 50);
+			}
+			.toSelect{
+				display:flex;
+				justify-content:space-between;
+				flex-wrap:wrap;
+				height:100%;
+			}
+			.item{
+				pointer-events:auto;
+				display:inline-block;
+				padding:4px;
+				width:40px;
+				height:30px;
+				line-height:30px;
+				transition:all 0.2s ease-in;
+				cursor:pointer;
+				background:rgb(240, 240, 240);
+			}
+			.item:hover{
+				background:rgba(255, 255, 255, 0.3);
+			}
+			.title{
+				display:flex;
+				justify-content:space-around;
+				background:#009A61;
+			}
+			.dateHeader{
+				/* display:inline-block; */
+				width:30px;
+				margin:0 auto;
+				font-size:14px;
+				color:rgba(255, 255, 255, 0.6);
+			}
+			.dateHead{
+				display:flex;
+				width:100%;
+				height:20px;
+				background:#009A61;
+			}
+			.row{
+				height:25px;
+				width:100%;
+				display:flex;
+			}
+			.dateItem{
+				width:30px;
+				height:20px;
+				line-height:20px;
+				pointer-events:auto;
+				cursor:pointer;
+				transition:0.3s all ease-in;
+			}
+			.dateItem:hover{
+				background:rgba(255, 255, 255, 0.3);
+			}
+			#js-date-toSelect{
+				height:190px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<input type="text" placeholder="select the date" id="datepicker">
+			<div id="yearPanel" style="display:none;">
+				<div class="title">
+					<button class="prev"><</button>
+					<p class="range"></p>
+					<button class="next">></button>
+				</div>
+				<div class="toSelect" id="js-year-toSelect"></div>
+			</div>
+			<div id="monthPanel" style="display:none;">
+				<div class="toSelect" id="js-month-toSelect"></div>
+			</div>
+			<div id="datePanel" style="display:none;">
+				<div class="dateHead">
+					<span class="dateHeader">Sun</span>
+					<span class="dateHeader">Mon</span>
+					<span class="dateHeader">Tue</span>
+					<span class="dateHeader">Wed</span>
+					<span class="dateHeader">Thu</span>
+					<span class="dateHeader">Fri</span>
+					<span class="dateHeader">Sat</span>
+				</div>
+				<div class="toSelect" id="js-date-toSelect">
+					<div class="row"></div>
+					<div class="row"></div>
+					<div class="row"></div>
+					<div class="row"></div>
+					<div class="row"></div>
+					<div class="row"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="datepicker.js"></script>
+</html>

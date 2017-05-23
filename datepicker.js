@@ -25,8 +25,10 @@ document.body.addEventListener("click", function(ev){
 		monthPanel.style.display = "none";
 		datePanel.style.display = "none";
 	}
+	years.innerHTML = '';
+	months.innerHTML = '';
+	dates.innerHTML = buf;
 	ev.stopPropagation();
-	console.log(1);
 }, false)
 
 document.getElementsByClassName("prev")[0].addEventListener("click", function(ev){
@@ -43,10 +45,22 @@ document.getElementsByClassName("next")[0].addEventListener("click", function(ev
 });
 
 main.addEventListener("click", function(event){
-	if(yearPanel.style.display == "none"){
-		yearPanel.style.display = "block";
+	if(yearPanel.style.display == "none" ){
+		if(monthPanel.style.display !== "block" && datePanel.style.display !== "block"){
+			yearPanel.style.display = "block";
+			yearRender();
+		}
 	}
-	yearRender();
+	else if(monthPanel.style.display == "block"){
+		monthPanel.style.display = "block";
+	}
+	else if(datePanel.style.display == "block"){
+		datePanel.style.display = "block";
+	}
+	else {
+		years.innerHTML = '';
+		yearRender();
+	}
 	event.stopPropagation();
 	
 }, false);
@@ -72,9 +86,9 @@ years.addEventListener("click", function(ev){
 monthPanel.addEventListener("click", function(ev){
 	var ev = ev || window.event;
 	selected.month = parseInt(ev.target.innerText);
-	dateRender();
 	monthPanel.style.display = "none";
 	datePanel.style.display = "block";
+	dateRender();
 	ev.stopPropagation();
 	function dateRender(){
 		dateObj.setYear(selected.year);
@@ -108,12 +122,12 @@ monthPanel.addEventListener("click", function(ev){
 
 dates.addEventListener("click", function(ev){
 	var ev = ev || window.event;
-	
 	selected.day = parseInt(ev.target.innerText);
 	datePanel.style.display = "none";
 	main.placeholder = String(selected.year) + '-' + selected.month + '-' + (selected.day < 10 ? ('0' + String(selected.day)) : String(selected.day));
 	years.innerHTML = '';
-	dates.innerHTML = '';
+	months.innerHTML = '';
+	dates.innerHTML = buf;
 	ev.stopPropagation();
 });
 function yearRender(){

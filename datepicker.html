@@ -3,25 +3,34 @@
 	<meta charset=utf-8>
 	<head>
 		<style>
-			p, span{
+			#datepicker{
+				pointer-events: auto;
+			}
+			span.yearItem, span.monthItem, span.dateItem{
 				font-family:Microsoft Yahei;
 				font-weight:lighter;
 				text-align:center;
 			}
 			#yearPanel, #monthPanel, #datePanel{
 				position:absolute;
-				width:210px;
-				height:210px;
-				background:rgb(240, 240, 240);
+				width:30%;
+				height:300px;
+				background:rgba(200, 200, 200, 0.8);
 				transition:all 0.3s ease-in;
-				z-index:-1;
+				z-index:1;
 				pointer-events: none;
+				border-radius:3px;
+				margin-bottom:0px;
+				padding-left:0px;
+				padding-right:0px;
 			}
 			.prev, .next{
+				width:50px;
 				pointer-events:auto;
 				border:none;
 				background:#009A61;
 				color:white;
+				font-size:2rem;
 				transition:all 0.2s ease-in;
 			}
 			.prev:hover, .next:hover{
@@ -29,55 +38,62 @@
 				color:rgb(50, 50, 50);
 			}
 			.toSelect{
+				width:100%;
 				display:flex;
 				justify-content:space-between;
+				align-items:center;
 				flex-wrap:wrap;
-				height:100%;
+				height:90%;
 			}
-			.item{
+			.yearItem, .monthItem{
 				pointer-events:auto;
 				display:inline-block;
 				padding:4px;
-				width:40px;
-				height:30px;
+				width:25%;
+			/* 	height:25%; */
+				font-size:1.4rem;
 				line-height:30px;
 				transition:all 0.2s ease-in;
 				cursor:pointer;
-				background:rgb(240, 240, 240);
 			}
-			.item:hover{
+			.yearItem:hover, .monthItem:hover{
 				background:rgba(255, 255, 255, 0.3);
 			}
-			.title{
+			.datetitle{
 				display:flex;
 				justify-content:space-around;
 				background:#009A61;
+				height:10%;
+				width:100%;
 			}
 			.dateHeader{
 				/* display:inline-block; */
 				width:30px;
 				margin:0 auto;
-				font-size:14px;
+				font-size:18px;
 				color:rgba(255, 255, 255, 0.6);
 			}
 			.dateHead{
 				display:flex;
 				width:100%;
-				height:20px;
+				height:30px;
 				background:#009A61;
 			}
-			.row{
-				height:25px;
+			.Row{
+				height:45px;
 				width:100%;
 				display:flex;
+				justify-content: space-between;
+				margin:0;
 			}
 			.dateItem{
-				width:30px;
-				height:20px;
-				line-height:20px;
+				width:15%;
+				height:45px;
+				line-height:45px;
 				pointer-events:auto;
 				cursor:pointer;
 				transition:0.3s all ease-in;
+				font-size:2rem;
 			}
 			.dateItem:hover{
 				background:rgba(255, 255, 255, 0.3);
@@ -89,17 +105,17 @@
 	</head>
 	<body>
 		<div id="container">
-			<input type="text" placeholder="select the date" id="datepicker">
+			<input type="text" placeholder="select the date" id="datepicker" class="datepicker">
 			<div id="yearPanel" style="display:none;">
-				<div class="title">
+				<div class="datetitle">
 					<button class="prev"><</button>
 					<p class="range"></p>
 					<button class="next">></button>
 				</div>
-				<div class="toSelect" id="js-year-toSelect"></div>
+				<div class="toSelect yearToSelect" id="js-year-toSelect"></div>
 			</div>
 			<div id="monthPanel" style="display:none;">
-				<div class="toSelect" id="js-month-toSelect"></div>
+				<div class="toSelect monthToSelect" id="js-month-toSelect"></div>
 			</div>
 			<div id="datePanel" style="display:none;">
 				<div class="dateHead">
@@ -111,13 +127,13 @@
 					<span class="dateHeader">Fri</span>
 					<span class="dateHeader">Sat</span>
 				</div>
-				<div class="toSelect" id="js-date-toSelect">
-					<div class="row"></div>
-					<div class="row"></div>
-					<div class="row"></div>
-					<div class="row"></div>
-					<div class="row"></div>
-					<div class="row"></div>
+				<div class="dateToSelect toSelect" id="js-date-toSelect">
+					<div class="Row"></div>
+					<div class="Row"></div>
+					<div class="Row"></div>
+					<div class="Row"></div>
+					<div class="Row"></div>
+					<div class="Row"></div>
 				</div>
 			</div>
 		</div>

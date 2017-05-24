@@ -7,7 +7,7 @@
 {
 	pointer-events:auto;
 }
-```
+```，可以恢复指针事件，这是通过SVG来实现的。
 
 
 - 事件冒泡对父元素和子元素的事件监听器会有影响，会产生不想要的结果，使用``ev.stopPropagation()``来阻止事件冒泡传播。
@@ -18,3 +18,34 @@
 - 事件监听器的添加，事件委托，阻止冒泡，DOM节点的创建、插入和修改。
 - 三元运算符的使用，Date对象的API。
 - JavaScript的style API只能操作HTML元素的内联样式。
+
+##May 24, 2017 11:23 PM
+改进了事件绑定的方法，修改了上述第三个问题。
+只对input元素所在的容器进行添加事件监听器，通过判断点击的元素的类名进行switch流控制，其余渲染过程不变，增加一个初始化函数：
+```
+function initialize() {
+				years.innerHTML = '';
+				months.innerHTML = '';
+				datePanel.innerHTML = '';
+				var dateHead = document.createElement("div");
+				dateHead.setAttribute("class", "dateHead");
+				for(let i of ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]){
+					let oneSpan = document.createElement("span");
+					oneSpan.setAttribute("class", "dateHeader");
+					let textNode = document.createTextNode(i);
+					oneSpan.appendChild(textNode);
+					dateHead.appendChild(oneSpan);
+				}
+				var date2Select = document.createElement("div");
+				date2Select.setAttribute("class", "dateToSelect toSelect");
+				date2Select.setAttribute("id", "js-date-toSelect");
+				for(let i = 0;i < 6;i ++){
+					let oneSpan = document.createElement("div");
+					oneSpan.setAttribute("class", "Row");
+					date2Select.appendChild(oneSpan);
+				}
+				datePanel.appendChild(dateHead);
+				datePanel.appendChild(date2Select);
+			}
+```
+解决了重复渲染的问题。通过在整体外层再套一层函数作用域来记忆前一次年份渲染的范围。计划明天写一下完全组件化，即实现使用时只插入一个input函数，通过一个API渲染所需要的所有DOM元素，并添加数据API以获取选择的日期数据。

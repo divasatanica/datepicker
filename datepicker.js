@@ -85,6 +85,7 @@ function DatePicker(){
 	function yearRender(){
 		var yearPanel = document.getElementById("yearPanel");
 		var years = document.getElementById("js-year-toSelect");
+		years.innerHTML = '';
 		for(let i = year - 5;i < year + 7;i ++){
 			let oneSpan = document.createElement("span");
 			oneSpan.setAttribute("class", "yearItem");
@@ -181,14 +182,12 @@ function DatePicker(){
 		switch(target.className){
 				case ("prev"):{
 					year -= 12;
-					years.innerHTML = '';
 					yearRender();
 					ev.stopPropagation();
 					break;
 				}
 				case("next"):{
 					year += 12;
-					years.innerHTML = '';
 					yearRender();
 					ev.stopPropagation();
 					break;

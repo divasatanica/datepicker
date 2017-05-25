@@ -12,4 +12,4 @@
 var data = DatePicker();
 ```
 这样就将这个datepicker的数据对象绑定到这个data变量上去了，可以直接调用该对象的getYear， getMonth， getDate方法来获取选择好的日期数据，初始化数据都是0。
-![主界面](1.jpg)
+![主界面](datepicker/1.JPG)

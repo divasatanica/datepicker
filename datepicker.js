@@ -1,7 +1,6 @@
 function DatePicker(){
 	//这里套一层作用域是为了使选择年份的两个按钮可以记住上次渲染的年份范围;
 	var datepick = document.getElementById("datepick");
-	var a = 1;
 	var today = new Date();
 		dateObj = new Date();
 		dateDelta = new Date();

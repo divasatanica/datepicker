@@ -3,7 +3,7 @@
 
 ## 过程中遇到的问题
 - 绝对定位元素包裹的子元素无法点击。解决方法是为绝对定位元素添加css样式：
-```
+```csss
 {
 	pointer-events:auto;
 }
@@ -22,7 +22,7 @@
 ## May 24, 2017 11:23 PM
 改进了事件绑定的方法，修改了上述第三个问题。
 只对input元素所在的容器进行添加事件监听器，通过判断点击的元素的类名进行switch流控制，其余渲染过程不变，增加一个初始化函数：
-```
+```javascript
 function initialize() {
 				years.innerHTML = '';
 				months.innerHTML = '';
